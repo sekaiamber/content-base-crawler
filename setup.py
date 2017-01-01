@@ -2,12 +2,17 @@ import sys
 import re
 from optparse import OptionParser, OptionGroup
 
+from work import process
+
 
 class Config(object):
     # settings
     SIM_THRESHOLD = -1
     CHILDREN_COUNT = -1
     url = ''
+    webdriver = ''
+    chromeDriverPath = ''
+    parser = None
     # options
     usage = 'Usage: %prog <URL> [options]'
     parser_system_options = [
@@ -29,13 +34,32 @@ class Config(object):
             "type": "int"
         },
     ]
-    parser_options = []
+    parser_options = [
+        {
+            "short": "-d",
+            "long": "--webdriver",
+            "action": "store",
+            "dest": "webdriver",
+            "default": "phantomjs",
+            "help": "Web Driver",
+            "type": "string"
+        },
+        {
+            "short": "--chrome-driver-path",
+            "action": "store",
+            "dest": "chromeDriverPath",
+            "default": "./chromedriver",
+            "help": "Chromedriver path",
+            "type": "string"
+        },
+    ]
 
     def __init__(self, args):
         self.verify(args)
 
     def verify(self, args):
         parser = OptionParser(usage=self.usage)
+        self.parser = parser
         for opt in self.parser_options:
             parser.add_option(
                 opt['short'],
@@ -76,7 +100,10 @@ class Config(object):
         # other
         self.SIM_THRESHOLD = options.threshold
         self.CHILDREN_COUNT = options.childrenCount
+        self.webdriver = options.webdriver
+        self.chromeDriverPath = options.chromeDriverPath
 
 
 if __name__ == "__main__":
     conf = Config(sys.argv)
+    process(conf)
