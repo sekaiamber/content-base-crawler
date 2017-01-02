@@ -21,5 +21,5 @@ $ brew install phantomjs
 
 ### 使用Chrome driver作为Webdriver（`-m chrome`）
 
-从[Google官网](https://sites.google.com/a/chromium.org/chromedriver/downloads)下载最新的Chromedriver，使用`--chrome-driver-path`设置路径
+从[Google官网](https://sites.google.com/a/chromium.org/chromedriver/downloads)下载最新的Chromedriver，使用`--chrome-driver-path`设置路径，默认路径是`./chromedriver`。
 

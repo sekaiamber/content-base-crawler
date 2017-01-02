@@ -1,4 +1,6 @@
+from datetime import datetime
 from selenium import webdriver
+from .webpage import WebPage
 
 
 def getDriver(config):
@@ -20,5 +22,12 @@ def process(config):
     # driver
     driver = getDriver(config)
     driver.get(config.url)
-    data = driver.find_element_by_id('su').get_attribute('value')
-    print(data)
+    t1 = datetime.now()
+    body = driver.find_element_by_css_selector('body')
+    t2 = datetime.now()
+    # print(body.get_attribute('innerHTML'))
+    webpage = WebPage(body)
+    t3 = datetime.now()
+    # webpage.print()
+    print(t2 - t1)
+    print(t3 - t2)
