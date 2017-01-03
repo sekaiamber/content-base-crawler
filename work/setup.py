@@ -2,6 +2,7 @@ from datetime import datetime
 from selenium import webdriver
 from .webpage import WebPage
 from .timer import Timer
+from .domSignaturer import DomSignaturer
 
 
 def getDriver(config):
@@ -26,9 +27,14 @@ def process(config):
     # timer
     timer = Timer()
     timer.addTag('Init finish')
+    # get body element
     body = driver.find_element_by_css_selector('body')
     timer.addTag('Dom ready')
-    # print(body.get_attribute('innerHTML'))
+    # build webpage
     webpage = WebPage(body)
     timer.addTag('Webpage inited')
+
+    # test
     # webpage.print()
+    # domSignaturer = DomSignaturer()
+    # domSignaturer.print()

@@ -19,7 +19,7 @@ class Timer:
     def print(self, tagName=None):
         if tagName is not None:
             tag = self.getTag(tagName)
-            print(bold(tag[0], bg='green') + '  ' + str(tag[1]))
+            print(bold(tag[0], bg='green'), str(tag[1]))
         else:
             for tag in self._tags:
-                print(bold(tag[0], bg='green') + '  ' + str(tag[1]))
+                print(bold(tag[0], bg='green'), str(tag[1]))
