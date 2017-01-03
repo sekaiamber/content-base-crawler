@@ -3,6 +3,7 @@ from selenium import webdriver
 from .webpage import WebPage
 from .timer import Timer
 from .domSignaturer import DomSignaturer
+from .utils import editDistance
 
 
 def getDriver(config):
@@ -35,6 +36,10 @@ def process(config):
     timer.addTag('Webpage inited')
 
     # test
-    # webpage.print()
+    webpage.print()
     # domSignaturer = DomSignaturer()
     # domSignaturer.print()
+
+    # str1 = '\u1000\u2001\u2002\u1001\u1002'
+    # str2 = '\u1000\u2002\u1001'
+    # print(editDistance(str1, str2, len(str1), len(str2)))

@@ -9,6 +9,7 @@ class Config(object):
     # settings
     SIM_THRESHOLD = -1
     CHILDREN_COUNT = -1
+    MIN_DEEP = -1
     url = ''
     webdriver = ''
     chromeDriverPath = ''
@@ -31,6 +32,14 @@ class Config(object):
             "dest": "childrenCount",
             "default": 6,
             "help": "Min children count of a DOM",
+            "type": "int"
+        },
+        {
+            "short": "--min-children-deep",
+            "action": "store",
+            "dest": "minDeep",
+            "default": 3,
+            "help": "Minimum deep of children of a DOM",
             "type": "int"
         },
     ]
@@ -100,6 +109,7 @@ class Config(object):
         # other
         self.SIM_THRESHOLD = options.threshold
         self.CHILDREN_COUNT = options.childrenCount
+        self.MIN_DEEP = options.minDeep
         self.webdriver = options.webdriver
         self.chromeDriverPath = options.chromeDriverPath
 

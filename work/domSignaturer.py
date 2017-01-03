@@ -31,6 +31,14 @@ class DomSignaturer:
             return chr(0)
         return chr(dim['index'] * 1000 + dim['values'].index(value))
 
+    def getDomSignature(self, tagName, classes=[]):
+        signs = []
+        signs.append(self.getDimensionValueSign('tag', tagName))
+        for className in classes:
+            signs.append(self.getDimensionValueSign('class', className))
+        signs = sorted(signs)
+        return ''.join(signs)
+
     def print(self):
         for k in self._dimension:
             print(k)
