@@ -7,6 +7,7 @@
 
 ```shell
 $ pip3 install selenium
+$ pip3 install ansicolors
 ```
 
 ### 使用PhontomJS作为Webdriver（默认）

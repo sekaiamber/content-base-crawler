@@ -92,3 +92,4 @@ ENV/
 
 # this repo
 chromedriver
+.DS_Store
