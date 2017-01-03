@@ -1,5 +1,5 @@
 # content-base-crawler
-某种基于内容相似度的爬虫实现
+某种基于内容相似度的爬虫实现，这种方式暂时没有能确保是否可能，这个项目也是一个探索项目，我使用Python是因为Python写起来方便一点，但是注意：**若使用PhantomJS作为Webdriver，强烈建议使用JS开发，Python通过Selenium来通信PhantomJS，有性能问题**
 
 ## 开发
 
