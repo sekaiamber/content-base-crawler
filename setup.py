@@ -1,5 +1,6 @@
 import sys
 import re
+import os.path
 from optparse import OptionParser, OptionGroup
 
 from work import process
@@ -15,9 +16,18 @@ class Config(object):
     chromeDriverPath = ''
     parser = None
     # options
-    usage = 'Usage: %prog <URL> [options]'
+    usage = 'Usage: %prog <URL> [-w workfile] [options]'
     parser_system_options = [
         # system
+        {
+            "short": "-w",
+            "long": "--work-file",
+            "action": "store",
+            "dest": "workFile",
+            "default": "./work.py",
+            "help": "Work file path",
+            "type": "string"
+        },
         {
             "short": "--sim-threshold",
             "action": "store",
@@ -106,6 +116,11 @@ class Config(object):
         if m is None:
             parser.print_help()
             parser.error("Invalid URL")
+        # work file
+        self.workFile = options.workFile
+        if not os.path.isfile(self.workFile):
+            parser.print_help()
+            parser.error("Work file " + self.workFile + " is not exist")
         # other
         self.SIM_THRESHOLD = options.threshold
         self.CHILDREN_COUNT = options.childrenCount
