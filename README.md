@@ -10,7 +10,7 @@ $ pip3 install selenium
 $ pip3 install ansicolors
 ```
 
-### 使用PhontomJS作为Webdriver（默认）
+### 使用PhantomJS作为Webdriver（默认）
 
 Mac下，建议使用`homebrew`安装`PhantomJS`。
 
