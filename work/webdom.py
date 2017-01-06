@@ -1,4 +1,5 @@
 from .domSignaturer import DomSignaturer
+from .utils import editDistance
 
 
 class WebDom:
@@ -53,11 +54,59 @@ class WebDom:
             ''.join(['.' + className for className in self.classes])
         )
 
+    def getChildrenMaxDeep(self):
+        if len(self.children) == 0:
+            return 0
+        else:
+            deeps = [child.getChildrenMaxDeep() for child in self.children]
+            return max(deeps) + 1
+
+    # get similar dom by their signature
+    def getSimilarBySignature(self, **argd):
+        sims = []
+        if not argd['minChildrenCount'] > len(self.children):
+            # get valid children
+            children = [
+                child for child in self.children
+                if child.getChildrenMaxDeep() >= argd['minChildrenMaxDeep']
+            ]
+            if not argd['minChildrenCount'] > len(children):
+                # classification
+                children = [{
+                    'dom': child,
+                    'sign': child.getSignature()
+                } for child in children]
+                for child in children:
+                    isAdd = False
+                    for sim in sims:
+                        edsums = sum([editDistance(
+                            simchild['sign'],
+                            child['sign'],
+                            len(simchild['sign']),
+                            len(child['sign'])
+                        ) for simchild in sim])
+                        edavg = edsums / len(sim)
+                        if edavg / len(child['sign']) < 1 - argd['threshold']:
+                            sim.append(child)
+                            isAdd = True
+                            break
+                    if not isAdd:
+                        sims.append([child])
+                sims = [sim for sim in sims if len(sim) > argd['minSimilarCount']]
+                if len(sims) > 0:
+                    sims = [{
+                        'selector': self.getSelector(),
+                        'sims': sims
+                    }]
+        for child in self.children:
+            child_sims = child.getSimilarBySignature(**argd)
+            sims.extend(child_sims)
+        return sims
+
     def print(self):
         print(
             '  ' * self.deep +
-            self.getSelector() +
-            '(' + self.getRootSelector() + ')'
+            self.getSelector()
         )
         for child in self.children:
             child.print()

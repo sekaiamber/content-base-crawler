@@ -9,8 +9,9 @@ from work import process
 class Config(object):
     # settings
     SIM_THRESHOLD = -1
-    CHILDREN_COUNT = -1
+    MIN_CHILDREN_COUNT = -1
     MIN_DEEP = -1
+    MIN_SIMILAR_COUNT = -1
     url = ''
     webdriver = ''
     chromeDriverPath = ''
@@ -32,15 +33,15 @@ class Config(object):
             "short": "--sim-threshold",
             "action": "store",
             "dest": "threshold",
-            "default": 10,
+            "default": 0.75,
             "help": "Similarity threshold",
-            "type": "int"
+            "type": "float"
         },
         {
-            "short": "--children-count",
+            "short": "--min-children-count",
             "action": "store",
-            "dest": "childrenCount",
-            "default": 6,
+            "dest": "minChildrenCount",
+            "default": 4,
             "help": "Min children count of a DOM",
             "type": "int"
         },
@@ -48,8 +49,16 @@ class Config(object):
             "short": "--min-children-deep",
             "action": "store",
             "dest": "minDeep",
-            "default": 3,
+            "default": 2,
             "help": "Minimum deep of children of a DOM",
+            "type": "int"
+        },
+        {
+            "short": "--min-similar-count",
+            "action": "store",
+            "dest": "minSimilar",
+            "default": 1,
+            "help": "Minimum count of a set of similar DOMs",
             "type": "int"
         },
     ]
@@ -123,8 +132,9 @@ class Config(object):
             parser.error("Work file " + self.workFile + " is not exist")
         # other
         self.SIM_THRESHOLD = options.threshold
-        self.CHILDREN_COUNT = options.childrenCount
+        self.MIN_CHILDREN_COUNT = options.minChildrenCount
         self.MIN_DEEP = options.minDeep
+        self.MIN_SIMILAR_COUNT = options.minSimilar
         self.webdriver = options.webdriver
         self.chromeDriverPath = options.chromeDriverPath
 
