@@ -462,7 +462,7 @@ DrStrider
 
 可见我们正确获得各种信息，并且剔除了许多噪音和不需要的DOM结构
 
-## 0x05 参考
+## 5. 参考
 
 * [1]. [Wiki edit distance](https://en.wikipedia.org/wiki/Edit_distance)
 * [2]. [Dynamic Programming - edit distance](http://www.geeksforgeeks.org/dynamic-programming-set-5-edit-distance/)
