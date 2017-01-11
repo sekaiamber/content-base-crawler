@@ -142,7 +142,7 @@ div
 
 那么问题就转化成了：如何得到一个签名转化成另一个签名的最小步骤数，进一步说就是，**如何得到两个字符串，由一个转化为另一个所需的最小步骤数。**
 
-针对这个问题，有个解叫**编辑距离（edit distance）[1]**，本例中，我使用编辑距离来作为支撑两个DOM相似性的依据。
+针对这个问题，有个解叫**编辑距离（edit distance）[[1]](https://github.com/sekaiamber/content-base-crawler/blob/master/doc/doc.md#5-参考)**，本例中，我使用编辑距离来作为支撑两个DOM相似性的依据。
 
 对于编辑距离，更加详细的定义应该是：
 
@@ -150,7 +150,7 @@ div
 
 编辑距离在很多领域运用广泛：DNA对比、拼写纠错、机器翻译、语意分析等领域。它计算简单，实现也不复杂，简直是算法菜鸡们的福音。
 
-我们来举个编辑距离是实际例子[1]，若想将`kitten`变为`sitting`，那么则需要下述步骤：
+我们来举个编辑距离是实际例子[[1]](https://github.com/sekaiamber/content-base-crawler/blob/master/doc/doc.md#5-参考)，若想将`kitten`变为`sitting`，那么则需要下述步骤：
 
 > 1. kitten → sitten (substitution of "s" for "k")
 > 2. sitten → sittin (substitution of "i" for "e")
@@ -173,7 +173,7 @@ div
         2. `d(i, j - 1) + 1`，相当于`b[i]`转化到`a[j - 1]`的步骤数加上一次增加`a[j]`字符的花费。
         3. `d(i - 1, j - 1) + 1`，相当于`b[i - 1]`转化到`a[j - 1]`的步骤数加上一次替换`b[i]`为`a[j]`字符的花费。
 
-Python程序如下[2]：
+Python程序如下[[2]](https://github.com/sekaiamber/content-base-crawler/blob/master/doc/doc.md#5-参考)：
 
 ```python
 def editDistance(str1, str2, m , n):
@@ -205,7 +205,7 @@ def editDistance(str1, str2, m , n):
     )
 ```
 
-可以通过存储中间计算量来破解递归，大大优化执行效率，优化后的代码可以看本例中`/work/utils.py::editDistance`这个函数。
+可以通过存储中间计算量来破解递归，大大优化执行效率，优化后的代码可以看本例中[`/work/utils.py::editDistance`](https://github.com/sekaiamber/content-base-crawler/blob/master/work/utils.py#L13)这个函数。
 
 至此，我们已经能正确比较出两个DOM签名的编辑距离，从而获得从一个DOM转化为另一个DOM需要的最小步骤。
 
@@ -255,7 +255,7 @@ def editDistance(str1, str2, m , n):
 7. 遍历`Node_A`的相似组，将数量小于给定最小相似组节点数量的组剔除。
 8. 对于所有第一层子节点重复整个过程，并将获得的相似DOM组合并到`Node_A`的相似组中。
 
-故而本算法中将拥有4个参数来调整，他们分别是：`最小子节点数`、`子节点最小深度`、`最小相似度阈值`、`最小相似组节点数量`。这部分代码可以参考`/work/webdom.py::WebDom.getSimilarBySignature`这部分代码。
+故而本算法中将拥有4个参数来调整，他们分别是：`最小子节点数`、`子节点最小深度`、`最小相似度阈值`、`最小相似组节点数量`。这部分代码可以参考[`/work/webdom.py::WebDom.getSimilarBySignature`](https://github.com/sekaiamber/content-base-crawler/blob/master/work/webdom.py#L65)这部分代码。
 
 ### 3.3 一些特殊情况
 
