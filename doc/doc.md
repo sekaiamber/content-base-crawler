@@ -146,7 +146,7 @@ div
 
 对于编辑距离，更加详细的定义应该是：
 
-> 在计算机科学中，编辑距离是一种通过计数两个字符串从一个转化成另一个的最小步骤数来量化彼此的不同。    ---- 维基百科
+> 在计算机科学中，编辑距离是一种通过计数两个字符串从一个转化成另一个的最小步骤数来量化彼此的不同的方法。    ---- 维基百科
 
 编辑距离在很多领域运用广泛：DNA对比、拼写纠错、机器翻译、语意分析等领域。它计算简单，实现也不复杂，简直是算法菜鸡们的福音。
 
@@ -314,6 +314,8 @@ $ python3 setup.py 'http://www.bilibili.com/video/bangumi-two-1.html' -d chrome 
 
 页面内容如图：
 
+![bilibili test](https://raw.githubusercontent.com/sekaiamber/content-base-crawler/master/doc/bilibili_test.png)
+
 我需要抓取红框内的内容，故在程序中设定了红框里为root节点：
 
 ```python
@@ -460,7 +462,7 @@ DrStrider
 
 可见我们正确获得各种信息，并且剔除了许多噪音和不需要的DOM结构
 
-## 0x05 参考
+## 5. 参考
 
 * [1]. [Wiki edit distance](https://en.wikipedia.org/wiki/Edit_distance)
 * [2]. [Dynamic Programming - edit distance](http://www.geeksforgeeks.org/dynamic-programming-set-5-edit-distance/)
