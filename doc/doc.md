@@ -314,6 +314,8 @@ $ python3 setup.py 'http://www.bilibili.com/video/bangumi-two-1.html' -d chrome 
 
 页面内容如图：
 
+![bilibili test](https://raw.githubusercontent.com/sekaiamber/content-base-crawler/master/doc/bilibili_test.png)
+
 我需要抓取红框内的内容，故在程序中设定了红框里为root节点：
 
 ```python
