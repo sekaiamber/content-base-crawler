@@ -160,7 +160,7 @@ div
 
 > 对于两个字符串`a = a1 ... an`和`b = b1 ... bm`，他们的编辑距离`dmn`算法如下：
 > ![Edit_distance](https://wikimedia.org/api/rest_v1/media/math/render/svg/1deeeaebff36dc4bdc79778bcafe0ec17ce63f83)
-> 其中，`Wdel`、`Wins`、`Wsub`分别表示`删除`、`插入`和`替换`目标字符串所花费的代价，在传统的`Levenshtein距离`中此代价均为，每单个字符的每种操作代价均为1。
+> 其中，`Wdel`、`Wins`、`Wsub`分别表示`删除`、`插入`和`替换`目标字符串所花费的代价，在传统的`Levenshtein距离`中，每单个字符的每种操作代价均为1。
 
 从数学公式上来看，很明显这是一个动态规划问题，若各个操作的代价均为1，用程序语言来描述的话，事实上就是这样：
 
