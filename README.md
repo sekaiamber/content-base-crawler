@@ -69,4 +69,8 @@ $ python3 'http://your-web-site.com' -w your_workfile.py -d chrome
 
 ## LICENSE
 
-CC-BY-NC-SA 3.0
+Copyright 2015-2016 Xu Xiaomeng(@sekaiamber)
+
+Most files are released under the MIT and GPL (version 2 or later) Licenses.
+
+**BUT:** Files in `/doc` folder are released under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) Licenses (only).
